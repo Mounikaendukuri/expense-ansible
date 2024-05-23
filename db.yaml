@@ -2,7 +2,7 @@
   hosts: db
   become: yes
   vars:
-    login_host: db.mounikadaws.online
+    login_host: 172.31.30.92
   vars_prompt:
     name : root_password
     prompt: please enter your root password
