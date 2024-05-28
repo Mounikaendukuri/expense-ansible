@@ -13,9 +13,10 @@
     ansible.builtin.dnf: # only works for redhat
       name : "{{ item }}"
       state: installed
-      loop:
+    loop:
       - nodejs
       - mysql
+  
   - name : create expense user
     ansible.builtin.user:
       name: expense     
