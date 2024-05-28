@@ -4,7 +4,7 @@
   vars:
     login_host: db.mounikadaws.online
   vars_prompt:
-    name : root_password
+    name : mysql_root_password
     prompt: please enter your root password
     private: no
   tasks:
@@ -29,7 +29,7 @@
   - name: check db connection
     community.mysql.mysql_info:
       login_user: root
-      login_password: "{{ root_password }}"
+      login_password: "{{ mysql_root_password }}"
       login_host: "{{ login_host }}"
       filter: version
     ignore_errors: yes
@@ -40,5 +40,5 @@
        msg: "output: {{mysql_connection_output}}"
 
   - name: setup root password
-    ansible.builtin.command: mysql_secure_installation --set-root-pass {{ root_password }}
+    ansible.builtin.command: mysql_secure_installation --set-root-pass {{ mysql_root_password}}
     when : mysql_connection_output.failed is true # don't give {{ }} in when condition
